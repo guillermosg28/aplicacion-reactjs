@@ -1,0 +1,31 @@
+{
+    "posts": [
+        {
+            "id" : 1,
+            "image": "/images/posts/1.jpg",
+            "createdAt": "3min ago",
+            "autor": "@guillermosg",
+            "count_like": 4,
+            "text": "Descripcion del post, guillermo",
+            "comments": 5
+        },
+        {
+            "id" : 2,
+            "image": "/images/posts/2.jpg",
+            "createdAt": "5min ago",
+            "autor": "@diegosg",
+            "count_like": 6,
+            "text": "Descripcion del post, diego",
+            "comments": 15
+        },
+        {
+            "id" : 3,
+            "image": "/images/posts/3.jpg",
+            "createdAt": "8min ago",
+            "autor": "@gracielagt",
+            "count_like": 8,
+            "text": "Descripcion del post, graciela",
+            "comments": 25
+        }
+    ]
+}
