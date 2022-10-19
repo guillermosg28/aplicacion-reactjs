@@ -1,0 +1,22 @@
+.card{
+    border: 1px solid #eff0f2;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 3px #eaedf2;
+    .card-body{
+        .card-title{
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        .card-subtitle{
+            font-size: 0.7rem;
+            margin-bottom: 0.5rem;
+        }
+    }
+    .card-footer{
+        background-color: #fff;
+        border-top: 1px solid #eff0f2;
+        span{
+            font-weight: bold;
+        }
+    }
+}

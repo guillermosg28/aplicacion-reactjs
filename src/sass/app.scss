@@ -1,0 +1,18 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap");
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+//fontawesome
+@import "@fortawesome/fontawesome-free/css/all.css";
+
+// Variables
+@import "variables";
+
+//Theme
+@import "./theme/html";
+@import "./theme/header";
+@import "./theme/form";
+@import "./theme/main";
+@import "./theme/card";
