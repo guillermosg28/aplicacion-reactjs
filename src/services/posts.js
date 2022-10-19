@@ -1,9 +1,9 @@
-import data from "../data/posts.json";
+import axios from "axios";
 
 export function getPosts() {
-  return new Promise((resolve, reject) => {
-     window.setTimeout(() => {
-       resolve([...data.posts]);
-     }, 3000);
-  });
+  return axios
+    .get("https://three-points.herokuapp.com/api/posts", {
+      headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+    })
+    .then((response) => response.data);
 }

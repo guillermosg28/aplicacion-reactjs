@@ -1,0 +1,22 @@
+.btn-primary {
+    color: #fff;
+    background-color: $color-primary;
+    border-color: $color-primary;
+    &:focus,
+    &:active,
+    &:hover {
+        color: #fff;
+        background-color: desaturate(darken($color-primary, 8), 2) !important;
+        border-color: darken($color-primary, 10) !important;
+        box-shadow: 0 0 0 0.15rem rgba(mix($color-primary, $color-primary, 15%), 0.5) !important;
+    }
+    &:disabled {
+        color: #fff;
+        background-color: $color-primary;
+        border-color: $color-primary;
+        cursor: no-drop;
+        &:hover {
+            box-shadow: none;
+        }
+    }
+}

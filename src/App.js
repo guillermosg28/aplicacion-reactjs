@@ -1,28 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
 import PostList from "./components/PostList";
 import Profile from "./components/Profile";
-import { getPosts } from "./services/posts";
-import Loading from "./components/Loading";
-
-const initialPosts = [];
+import Login from "./components/Login";
 
 function App() {
   const [section, setSection] = useState("posts");
 
-  const [posts, setPosts] = useState(initialPosts);
-
-  const [postsFilter, setPostsFilter] = useState(initialPosts);
-
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    getPosts().then((posts) => {
-      setPosts(posts);
-      setPostsFilter(posts);
-    });
-  }, []);
+  const [loginOk, setLoginOk] = useState(localStorage.getItem("token"));
 
   function handleSection(state) {
     setSection(state);
@@ -30,20 +18,12 @@ function App() {
 
   function handleSearch(event) {
     setSearch(event.target.value);
-    const results = posts.filter(post => {
-      return post.text.toLowerCase().includes(search);
-    }
-    );
-    setPostsFilter(results);
   }
 
   function renderSection() {
     if (section === "posts") {
       return (
-        posts === initialPosts
-          ? <Loading />
-          : <><SearchBar search={search} onSearch={handleSearch} /> <PostList posts={postsFilter} /></>
-
+        <><SearchBar search={search} onSearch={handleSearch} /> <PostList onSearch={handleSearch} search={search} /></>
       );
     }
     if (section === "profile") {
@@ -59,7 +39,13 @@ function App() {
       <div className="main-content">
         <div className="page-content">
           <div className="container-fluid">
-            {renderSection()}
+            {loginOk ? (
+              <>
+                {renderSection()}
+              </>
+            ) : (
+              <Login onLoginComplete={setLoginOk} />
+            )}
           </div>
         </div>
       </div>
