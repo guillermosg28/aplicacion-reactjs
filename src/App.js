@@ -42,7 +42,7 @@ function App() {
       return (
         posts === initialPosts
           ? <Loading />
-          : <PostList posts={postsFilter} />
+          : <><SearchBar search={search} onSearch={handleSearch} /> <PostList posts={postsFilter} /></>
 
       );
     }
@@ -59,8 +59,6 @@ function App() {
       <div className="main-content">
         <div className="page-content">
           <div className="container-fluid">
-            {search}
-            <SearchBar search={search} onSearch={handleSearch} />
             {renderSection()}
           </div>
         </div>
