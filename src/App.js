@@ -23,7 +23,7 @@ function App() {
   function renderSection() {
     if (section === "posts") {
       return (
-        <><SearchBar search={search} onSearch={handleSearch} /> <PostList onSearch={handleSearch} search={search} /></>
+        <><SearchBar search={search} onSearch={handleSearch} /> <PostList search={search} /></>
       );
     }
     if (section === "profile") {
@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar onSection={handleSection} />
+      <NavBar onSection={handleSection} token={loginOk} />
       <div className="main-content">
         <div className="page-content">
           <div className="container-fluid">

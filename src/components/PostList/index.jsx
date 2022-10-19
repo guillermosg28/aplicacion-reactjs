@@ -5,7 +5,7 @@ import Loading from "../../components/Loading";
 
 const initialPosts = [];
 
-function PostList({ search, onSearch }) {
+function PostList({ search}) {
   const [posts, setPosts] = useState(initialPosts);
 
   const [searchLocal, setSearchLocal] = useState("");
