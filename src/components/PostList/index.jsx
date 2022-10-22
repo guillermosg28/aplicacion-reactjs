@@ -2,10 +2,14 @@ import Post from "./Post";
 import { useState, useEffect } from "react";
 import { getPosts } from "../../services/posts";
 import Loading from "../../components/Loading";
+import { useNavigate } from "react-router-dom";
 
 const initialPosts = [];
 
 function PostList({ search}) {
+
+  const navigate = useNavigate();
+
   const [posts, setPosts] = useState(initialPosts);
 
   const [searchLocal, setSearchLocal] = useState("");
@@ -16,8 +20,15 @@ function PostList({ search}) {
     getPosts().then((posts) => {
       setPosts(posts);
       setPostsFilter(posts);
+    })
+    .catch( (error) => {
+      if (error.response.status === 401) {
+        navigate("/login");
+        localStorage.clear();
+      }
     });
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
 
   function handleSearch() {
     const results = posts.filter((post) => {

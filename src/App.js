@@ -1,51 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import SearchBar from "./components/SearchBar";
-import PostList from "./components/PostList";
 import Profile from "./components/Profile";
-import Login from "./components/Login";
+import Login from "./screens/Login";
+import Home from "./screens/Home";
+import { useNavigate } from "react-router-dom";
 
 function App() {
-  const [section, setSection] = useState("posts");
 
-  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   const [loginOk, setLoginOk] = useState(localStorage.getItem("token"));
 
-  function handleSection(state) {
-    setSection(state);
-  }
-
-  function handleSearch(event) {
-    setSearch(event.target.value);
-  }
-
-  function renderSection() {
-    if (section === "posts") {
-      return (
-        <><SearchBar search={search} onSearch={handleSearch} /> <PostList search={search} /></>
-      );
+  useEffect(() => {
+    if(!loginOk){
+      navigate("/login");
     }
-    if (section === "profile") {
-      return (
-        <Profile avatar={'/images/perfil.jpg'} username={'guillermosg'} bio={'Desarrollador FullStack, con más de 4 años de experiencia en desarrollo de aplicaciones web con diferentes tecnologías de mayor demanda en el mercado.'} />
-      );
-    }
-  }
+  }, [loginOk, navigate]);
 
   return (
     <div className="App">
-      <NavBar onSection={handleSection} token={loginOk} />
+      <NavBar />
       <div className="main-content">
         <div className="page-content">
           <div className="container-fluid">
-            {loginOk ? (
-              <>
-                {renderSection()}
-              </>
-            ) : (
-              <Login onLoginComplete={setLoginOk} />
-            )}
+            <Routes>
+              <Route path="/login" element={<Login onLoginComplete={setLoginOk} />}/>
+              <Route path="/" element={<Home />}/>
+              <Route path="/profile" element={<Profile avatar={'/images/perfil.jpg'} username={'guillermosg'} bio={'Desarrollador FullStack, con más de 4 años de experiencia en desarrollo de aplicaciones web con diferentes tecnologías de mayor demanda en el mercado.'} />}/>
+            </Routes>
           </div>
         </div>
       </div>

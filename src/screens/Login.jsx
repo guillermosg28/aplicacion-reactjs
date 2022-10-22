@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { login } from "../services/login";
 
 function Login({ onLoginComplete }) {
+  const navigate = useNavigate();
   const [error, setError] = useState(false);
 
   function handleSubmit(event) {
@@ -12,6 +14,7 @@ function Login({ onLoginComplete }) {
       .then((data) => {
         localStorage.setItem("token", data.token);
         onLoginComplete(data.token);
+        navigate("/");
       })
       .catch(() => {
         setError(true);
